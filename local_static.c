@@ -1,8 +1,12 @@
+/*
+ * Local static variable is initialized to zero by default.
+ */
+
 #include <stdio.h>
 
 void print_x()
 {
-	static int x = 0;
+	static int x;
 	printf("x: %d\n", x);
 	x = x + 1;
 }

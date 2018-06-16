@@ -1,4 +1,7 @@
-
+/*
+ * Macro to calculate average of two numbers.
+ * With type check and overflow handling.
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>

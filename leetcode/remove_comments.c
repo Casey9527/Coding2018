@@ -85,7 +85,7 @@ char** removeComments(char** source, int sourceSize, int* returnSize) {
 
    	char *sout = NULL;
     int o_len = 0;
-    
+
     for (i = 0; i < sourceSize; i++) {
     	char *sin  = source[i];
         //printf("sin: %s\n", sin);
@@ -102,7 +102,7 @@ char** removeComments(char** source, int sourceSize, int* returnSize) {
     		char curr, next;
     		curr = sin[j];
     		next = sin[j + 1];
-            
+
     		if (curr == '/') {
     			if (next == '/' && !in_block_comment) {
     				in_line_comment = 1;
@@ -119,28 +119,28 @@ char** removeComments(char** source, int sourceSize, int* returnSize) {
     			if (!append_one_char(&sout, &o_len, curr))
     				return NULL;
             }
-            
+
     		if (curr == '*' && next == '/' && in_block_comment) {
     			in_block_comment = 0;
     			j++;
     		}
     	}
-     
+
     	if (in_block_comment && !in_line_comment)
     		continue;
 
         if (!sout)
             continue;
-        
+
     	if (!append_one_char(&sout, &o_len, '\0'))
     		return NULL;
-        
+
     	ret = (char **)realloc(ret, (*returnSize + 1) * sizeof(char *));
     	if (!ret) {
     		printf("failed to resize line array\n");
     		return NULL;
     	}
-        
+
        // printf("sout: %s\n", sout);
     	ret[*returnSize] = sout;
     	(*returnSize)++;
@@ -148,6 +148,6 @@ char** removeComments(char** source, int sourceSize, int* returnSize) {
     	o_len = 0;
 
     }
-    
+
     return ret;
 }
